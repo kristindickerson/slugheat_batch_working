@@ -119,12 +119,13 @@ if loop_pars
     numCols=18;
     varNames = {'Cruise', 'Station', 'Pen', 'TrialNum', 'Iter', 'HP', 'BW', ...
                     'TotNumSens', 'IgnoredSens', 'SensorsNoTemp', 'SensorsNok', ...
-                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'} % Create variable names as Column1, Column2, etc.
+                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'}; % Create variable names as Column1, Column2, etc.
     % Initialize an empty table with the specified variable names
     outputTable = array2table(zeros(0, numCols), 'VariableNames', varNames);
 
     % Loop through each file and apply your function
     for i = 1:length(fileList)
+
         % Skip '.' and '..' or any directory (optional)
         if fileList(i).isdir
             continue;
@@ -135,6 +136,7 @@ if loop_pars
         par_file = fileList(i).name
     
         change_pars=1;
+        counter=counter+1;
 
         % Call your function on this file
         [HFData, ErrData]=batchmode(filePath, PulseData,folderPath,change_pars,par_file, counter);
@@ -1105,7 +1107,7 @@ MethodChoice = 'Iterate';
             % Print out new PAR file 
             % ----------------------
             PrintNewPar(PulsePower, PenFileName, S_ParFile, ...
-                CurrentPath, AppOutputs, isBatchMode);   
+                CurrentPath, AppOutputs, isBatchMode, par_file);   
     
             % Print final input parameters to RES file
             % -------------------------------------------------
@@ -1220,9 +1222,7 @@ MethodChoice = 'Iterate';
             disp(['Output files created for penetration: ' ...
                '' newline newline ...
                ResFileName newline ...
-               [PenFileName(1:end-4) '.par' newline ...
-                PenFileName(1:end-4) '_Results.mat' newline ...
-                PenFileName(1:end-4) '_HF-Summary.mat'] newline])   
+               par_file])   
         end
  
 end

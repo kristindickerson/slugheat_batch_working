@@ -113,17 +113,17 @@ function 	[PenFileName, PenFilePath, PenFile, ...
     % user whether to continue and overwrite or cancel and allow user to
     % move or rename the exitign .res file.
     % ---------------------------------------------------------------------
-    ResFile = [PenPath '/' ResFileName];
     baseFilename = ResFileName(1:end-4);
     extension = '.res';
 
-    if isfile(ResFile)
-        % Increment the counter
-        counter = counter + 1;
-        % Create a new filename with the counter as suffix
-        ResFile = [PenPath '/' baseFilename, '_',num2str(counter), extension];
+    if counter==0
+        ResFile = [PenPath '/' ResFileName];
         ResFileId = fopen(ResFile,'w');
     else
+        % Increment the counter
+        % Create a new filename with the counter as suffix
+        ResFileName = [baseFilename, '_par',num2str(counter), extension];
+        ResFile = [PenPath '/' ResFileName];
         ResFileId = fopen(ResFile,'w');
     end
 

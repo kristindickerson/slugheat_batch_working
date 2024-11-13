@@ -10,7 +10,7 @@
 %%% =======================================================================
 
 
-function PrintNewPar(PulsePower, PenFileName, S_ParFile, CurrentPath, AppOutputs, isBatchMode)
+function PrintNewPar(PulsePower, PenFileName, S_ParFile, CurrentPath, AppOutputs, isBatchMode,par_file)
 
     %% Update pulse power to match current
     % --------------------------------------
@@ -23,10 +23,10 @@ function PrintNewPar(PulsePower, PenFileName, S_ParFile, CurrentPath, AppOutputs
     
     if isdeployed || isBatchMode
         writetable(T_ParFile, [AppOutputs PenFileName ...
-            '-out/' [PenFileName '.par']], 'FileType','text', ...
+            '-out/' par_file], 'FileType','text', ...
             'Delimiter', '|');
     else
         writetable(T_ParFile, [CurrentPath '/outputs/' PenFileName(1:end-4) ...
-            '-out/' [PenFileName(1:end-4) '.par']], 'FileType','text', ...
+            '-out/' par_file], 'FileType','text', ...
             'Delimiter', '|');
     end
