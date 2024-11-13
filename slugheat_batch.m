@@ -3,71 +3,165 @@
 
 clc
 
-% Ask the user for file type
-inputfolder_choice = input(['Please name the input folder where all', ...
-    '.pen or .mat files for batch mode are located.', newline ...
-    'This should be a subfolder within "/batch_inputs/": '], 's');
-% Specify the directory path
-folderPath = [pwd, '/batch_inputs/' inputfolder_choice];
-
-% Ask the user for file type
-filetype_choice = input('Are you using .pen or .mat files? (.pen/.mat): ', 's');
 % Ask the user for presence heat pulse or not
-HP_choice = input('Are you using a heat pulse? (pen/par/none): ', 's');
+loop_choice = input(['Do you want to loop through par files with a' newline ...
+    'single penetration or loop through pen files with a single' newline ...
+    'set of parameters (loop pars / loop pens): '], 's');
+switch loop_choice
+    case 'loop pars'
+        loop_pens = 0; 
+        loop_pars = 1;
+    case 'loop pens'
+        loop_pens = 1; 
+        loop_pars = 0;
+end   
 
-fileList = dir(fullfile(folderPath, ['*' filetype_choice])); % Use *.* for all files, or '*.ext' for specific file types
+counter = 0;
 
-switch HP_choice
-    case 'pen'
-        PulseData = 1; % Use heat pulse decay reduction from penetation file.
-    case 'par'
-        PulseData = 2; % Use heat pulse decay reduction from parameters file.
-    case 'none'
-        PulseData = 0; % Use no heat pulse.
-end        
-
-
-% Initialize an empty table with 18 variables (columns)
-numCols=18;
-varNames = {'Cruise', 'Station', 'Pen', 'TrialNum', 'Iter', 'HP', 'BW', ...
-                'TotNumSens', 'IgnoredSens', 'SensorsNoTemp', 'SensorsNok', ...
-                'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'} % Create variable names as Column1, Column2, etc.
-% Initialize an empty table with the specified variable names
-outputTable = array2table(zeros(0, numCols), 'VariableNames', varNames);
-
-% Loop through each file and apply your function
-for i = 1:length(fileList)
-    % Skip '.' and '..' or any directory (optional)
-    if fileList(i).isdir
-        continue;
-    end
-
-    % Get the full path to the file
-    filePath = fullfile(folderPath, fileList(i).name);
-
-    % Call your function on this file
-    [HFData, ErrData]=batchmode(filePath, PulseData,folderPath);
-
-    % Example 1x18 string array
-    rowData = HFData; % Replace with your actual data
-
-    % Convert the 1x18 string array to a table row
-    newRow = array2table(rowData, 'VariableNames', varNames);
+if loop_pens
     
-    % Append the new row to the main table
-    outputTable = [outputTable; newRow];
+    % Ask the user for file type
+    inputfolder_choice = input(['Please name the input folder where all', ...
+        '.pen or .mat files for batch mode are located.', newline ...
+        'This should be a subfolder within "/batch_inputs/": '], 's');
+    % Specify the directory path
+    folderPath = [pwd, '/batch_inputs/' inputfolder_choice];
+    
+    % Ask the user for file type
+    filetype_choice = input('Are you using .pen or .mat files? (.pen/.mat): ', 's');
+    % Ask the user for presence heat pulse or not
+    HP_choice = input('Are you using a heat pulse? (pen/par/none): ', 's');
+    
+    fileList = dir(fullfile(folderPath, ['*' filetype_choice])); % Use *.* for all files, or '*.ext' for specific file types
+    
+    switch HP_choice
+        case 'pen'
+            PulseData = 1; % Use heat pulse decay reduction from penetation file.
+        case 'par'
+            PulseData = 2; % Use heat pulse decay reduction from parameters file.
+        case 'none'
+            PulseData = 0; % Use no heat pulse.
+    end        
+    
+    % Initialize an empty table with 18 variables (columns)
+    numCols=18;
+    varNames = {'Cruise', 'Station', 'Pen', 'TrialNum', 'Iter', 'HP', 'BW', ...
+                    'TotNumSens', 'IgnoredSens', 'SensorsNoTemp', 'SensorsNok', ...
+                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'} % Create variable names as Column1, Column2, etc.
+    % Initialize an empty table with the specified variable names
+    outputTable = array2table(zeros(0, numCols), 'VariableNames', varNames);
 
+    % Loop through each file and apply your function
+    for i = 1:length(fileList)
+        % Skip '.' and '..' or any directory (optional)
+        if fileList(i).isdir
+            continue;
+        end
+    
+        % Get the full path to the file
+        filePath = fullfile(folderPath, fileList(i).name);
+    
+        change_pars = 0;
+        par_file=[];
+
+        % Call your function on this file
+        [HFData, ErrData]=batchmode(filePath, PulseData,folderPath,change_pars,par_file, counter);
+    
+        % Example 1x18 string array
+        rowData = HFData; % Replace with your actual data
+    
+        % Convert the 1x18 string array to a table row
+        newRow = array2table(rowData, 'VariableNames', varNames);
+    
+        % Append the new row to the main table
+        outputTable = [outputTable; newRow];
+    
+    end
+    % Get the current date and time without spaces
+    currentDateTime = datetime('now', 'Format', 'yyyy-MM-dd_HHmmss');
+    % Convert it to a string
+    currentDateTimeString = char(currentDateTime);
+    % Specify the file name and path
+    filename = [pwd '/outputs/outputData_batch_' currentDateTimeString '.xlsx'];
+    % Write the table to the Excel file
+    writetable(outputTable, filename);
+
+    disp('Success! See outputs in folder "/outputs/"')
 end
-% Get the current date and time without spaces
-currentDateTime = datetime('now', 'Format', 'yyyy-MM-dd_HHmmss');
-% Convert it to a string
-currentDateTimeString = char(currentDateTime);
-% Specify the file name and path
-filename = [pwd '/outputs/outputData_batch_' currentDateTimeString '.xlsx'];
-% Write the table to the Excel file
-writetable(outputTable, filename);
+
+if loop_pars
+
+    % Ask the user for file type
+    inputfolder_choice = input(['Please name the input folder where all', ...
+        '.pen or .mat files for batch mode are located.', newline ...
+        'This should be a subfolder within "/batch_inputs/": '], 's');
+    % Specify the directory path
+    folderPath = [pwd, '/batch_inputs/' inputfolder_choice];
+    
+    % Ask the user for file type
+    filetype_choice = input('Are you using .pen or .mat files? (.pen/.mat): ', 's');
+    % Ask the user for presence heat pulse or not
+    HP_choice = input('Are you using a heat pulse? (pen/par/none): ', 's');
+    
+    file_pen = dir(fullfile(folderPath, ['*' filetype_choice])); % Use *.* for all files, or '*.ext' for specific file types
+    fileList = dir(fullfile(folderPath, '*par'));
+
+    switch HP_choice
+        case 'pen'
+            PulseData = 1; % Use heat pulse decay reduction from penetation file.
+        case 'par'
+            PulseData = 2; % Use heat pulse decay reduction from parameters file.
+        case 'none'
+            PulseData = 0; % Use no heat pulse.
+    end        
+    
+    % Initialize an empty table with 18 variables (columns)
+    numCols=18;
+    varNames = {'Cruise', 'Station', 'Pen', 'TrialNum', 'Iter', 'HP', 'BW', ...
+                    'TotNumSens', 'IgnoredSens', 'SensorsNoTemp', 'SensorsNok', ...
+                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'} % Create variable names as Column1, Column2, etc.
+    % Initialize an empty table with the specified variable names
+    outputTable = array2table(zeros(0, numCols), 'VariableNames', varNames);
+
+    % Loop through each file and apply your function
+    for i = 1:length(fileList)
+        % Skip '.' and '..' or any directory (optional)
+        if fileList(i).isdir
+            continue;
+        end
+    
+        % Get the full path to the file
+        filePath = fullfile(folderPath, file_pen.name);
+        par_file = fileList(i).name
+    
+        change_pars=1;
+
+        % Call your function on this file
+        [HFData, ErrData]=batchmode(filePath, PulseData,folderPath,change_pars,par_file, counter);
+    
+        % Example 1x18 string array
+        rowData = HFData; % Replace with your actual data
+    
+        % Convert the 1x18 string array to a table row
+        newRow = array2table(rowData, 'VariableNames', varNames);
+    
+        % Append the new row to the main table
+        outputTable = [outputTable; newRow];
+    
+    end
+    % Get the current date and time without spaces
+    currentDateTime = datetime('now', 'Format', 'yyyy-MM-dd_HHmmss');
+    % Convert it to a string
+    currentDateTimeString = char(currentDateTime);
+    % Specify the file name and path
+    filename = [pwd '/outputs/outputData_batch_' currentDateTimeString '.xlsx'];
+    % Write the table to the Excel file
+    writetable(outputTable, filename);
+
+    disp('Success! See outputs in folder "/outputs/"')
+end
 %%
-function [HFData, ErrData]=batchmode(filePath, PulseData,folderPath)
+function [HFData, ErrData]=batchmode(filePath, PulseData,folderPath,change_pars,par_file, counter)
 
 isBatchMode = 1;
 figure_Main=[];
@@ -186,16 +280,21 @@ IgnoredSensors = [];
 
 %% Read .par file
 
-% Grab .par file in the parent folder
-ParFiles = dir(fullfile(folderPath, '*.par'));
+if ~change_pars
+    % Grab .par file in the parent folder
+    ParFiles = dir(fullfile(folderPath, '*.par'));
 
-if length(ParFiles)==1
-    ParFileName = ParFiles(1).name;
-    ParFile = fullfile(folderPath, ParFileName);
+    if length(ParFiles)==1
+        ParFileName = ParFiles(1).name;
+        ParFile = fullfile(folderPath, ParFileName);
+    else
+        disp(['Error: You must have only 1 .par file in the parent folder. ' ...
+            'Place only the .par file you want to use to define your parameters in the folder: ' folderPath])
+    end 
 else
-    disp(['Error: You must have only 1 .par file in the parent folder. ' ...
-        'Place only the .par file you want to use to define your parameters in the folder: ' parentFolder])
-end    
+    ParFileName = par_file;
+    ParFile = fullfile(folderPath, ParFileName);
+end
 
 %% Read in parameters from parameters file
         [S_ParFile, ...
@@ -264,7 +363,7 @@ end
 		        CurrentPath, ...
                ProgramLogId, ...
                figure_Main, ...
-               AppPath, isBatchMode, filePath);
+               AppPath, isBatchMode, filePath, counter);
 
             % if there is no .res file created yet, stop
             if isempty(ResFileId) 
@@ -952,7 +1051,7 @@ MethodChoice = 'Iterate';
             Pen = num2str(Penetration);
             Iter = num2str(Iteration-1);
             HP = num2str(PulsePower);
-            if PulseData == 1
+            if PulseData 
                 HP = [HPStatus, ' (',HP, ' J/m)'];
             else
                 HP = HPStatus;

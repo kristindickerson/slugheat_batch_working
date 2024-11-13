@@ -1,13 +1,13 @@
 -- Reading in parameters from parameters file
 
  -- Finding penetration file from SlugPen...
-Penetration file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_8.pen
+Penetration file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_9.pen
 
  -- Finding tap file from SlugPen...
-TAP file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_8.tap
+TAP file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_9.tap
 
  -- Finding mat file from SlugPen...
-MAT file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_8.mat
+MAT file: /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_9.mat
 
  -- Reading in parameters from parameter file...
 -- Reading in penetatration file

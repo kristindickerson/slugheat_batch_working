@@ -28,7 +28,7 @@ function 	[PenFileName, PenFilePath, PenFile, ...
 			ResFileName, ResFile, ...
             LogFileId, ResFileId...
             ] = GetFiles(...
-			CurrentPath, ProgramLogId, figure_Main, AppPath, isBatchMode, filePath)
+			CurrentPath, ProgramLogId, figure_Main, AppPath, isBatchMode, filePath, counter)
 	
  	
 % ====================================================================
@@ -114,8 +114,14 @@ function 	[PenFileName, PenFilePath, PenFile, ...
     % move or rename the exitign .res file.
     % ---------------------------------------------------------------------
     ResFile = [PenPath '/' ResFileName];
-    if exist(ResFile, 'file')
-        ResFile = [ResFile, '_2'];
+    baseFilename = ResFileName(1:end-4);
+    extension = '.res';
+
+    if isfile(ResFile)
+        % Increment the counter
+        counter = counter + 1;
+        % Create a new filename with the counter as suffix
+        ResFile = [PenPath '/' baseFilename, '_',num2str(counter), extension];
         ResFileId = fopen(ResFile,'w');
     else
         ResFileId = fopen(ResFile,'w');
