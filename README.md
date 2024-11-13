@@ -4,7 +4,7 @@ This is a rough draft for batch mode functionality for SlugHeat.
 
 inputs:
 	
-	Create a folder that houses all your .mat, .tap, .par, and .pen files. Ensure that all penetrations you are running require the same input parameters, as defined in your .par file that needs to also be in the same subfolder. Place that folder within the subfolder /batch_inputs/. When prompted, the command window will ask you the name of the name of this subfolder that you created.
+	Create a folder that houses all your .mat, .tap, .par, and .pen files. Ensure that all penetrations you are running require the same input parameters, as defined in 		your .par file that needs to also be in the same subfolder. Place that folder within the subfolder /batch_inputs/. When prompted, the command window will ask you the 		name of the name of this subfolder that you created.
 
 		EX: if your .mat, .tap, .par, and .pen are in 'Folder_With_My_Files'
 
@@ -29,17 +29,23 @@ inputs:
 
 			.pen
 
-	Next, the command window will ask if you are using a heat pulse. If you are, 
+	Next, the command window will ask if you are using a heat pulse and if so, whether to use the power (J/m) defined in the penetration files (.pen and .mat) or parameter 	file (.par). 
+ 	If you want to use power defined in the penetration files, 
 
 		write:
 
-			y
+			pen
+        If you want to use power defined in the parameter file, 
+
+		write:
+
+			par
 
 	If you are not using a heat pulse, 
 
 		write:
 
-			n
+			none
 
 outputs:
 
