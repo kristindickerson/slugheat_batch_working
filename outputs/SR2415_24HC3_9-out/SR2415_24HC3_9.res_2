@@ -7,21 +7,21 @@
            ============================================================================
 
 
----------------------------------------------------------------------------------------------------------------------
---                                                                                                                 --
---  RESULTS FILE: /Users/kristindickerson/00_local/slugheat_batch/outputs/SR2415_24HC3_9-out/SR2415_24HC3_9.res_2  --
---                                                                                                                 --
---                                         Processed: 13-Nov-2024 09:28:22                                         --
---                                                                                                                 --
----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+--                                                                                                                         --
+--  RESULTS FILE: /Users/kristindickerson/00_local/slugheat_batch_working/outputs/SR2415_24HC3_9-out/SR2415_24HC3_9.res_2  --
+--                                                                                                                         --
+--                                             Processed: 13-Nov-2024 10:10:30                                             --
+--                                                                                                                         --
+-----------------------------------------------------------------------------------------------------------------------------
 
 
 
-Penetration file:  /Users/kristindickerson/00_local/slugheat_batch/batch_inputs/Glenns_SeptCruise/24HC3/SR2415_24HC3_9.pen
+Penetration file:  /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3_9.pen
 
-Default Parameter file (*):  /Users/kristindickerson/00_local/slugheat_batch/batch_inputs/Glenns_SeptCruise/24HC3/SR2415_24HC3.par
+Default Parameter file (*):  /Users/kristindickerson/00_local/slugheat_batch_working/batch_inputs/24HC3/SR2415_24HC3.par
 
-Log file: /Users/kristindickerson/00_local/slugheat_batch/outputs/SR2415_24HC3_9-out/SR2415_24HC3_9.log
+Log file: /Users/kristindickerson/00_local/slugheat_batch_working/outputs/SR2415_24HC3_9-out/SR2415_24HC3_9.log
 
 
 Applying tilt correction ...
@@ -172,7 +172,7 @@ Sensor  Data Points  Eq. temp.   Error   Gradient  Delay   Slope
   16      43 / 37      0.151    8.4e-04   151.599     48   -0.301
   17      43 / 37      0.121    8.7e-04     0.000    192   -0.107
 
-*********   13-Nov-2024 09:28:23 - End frictional decay reduction of Trial 1 !   *********
+*********   13-Nov-2024 10:10:31 - End frictional decay reduction of Trial 1 !   *********
  
 Heat Pulse Decay - Iteration 09
 ========================================================================
@@ -203,7 +203,7 @@ Sensor  Data Points Mean kPoint Error  Eq. Temp  Delay    kSlope      kPt@Teq   
 
 
 
-*********   13-Nov-2024 09:28:23 - End heat pulse decay reduction of Trial 1 !   *********
+*********   13-Nov-2024 10:10:31 - End heat pulse decay reduction of Trial 1 !   *********
 
 
 
@@ -246,6 +246,6 @@ Sensor  Depth     Equilibrium          Bottom Water    Equilibrium   Temp. Error
   16     1.289       0.151                  1.742             1.893          8.424e-04       1.278
   17     1.092       0.121                  1.742             1.863          8.681e-04       1.297
 
-*********   13-Nov-2024 09:28:23 - End heat flow processing of Trial 1 !   *********
+*********   13-Nov-2024 10:10:31 - End heat flow processing of Trial 1 !   *********
 
 

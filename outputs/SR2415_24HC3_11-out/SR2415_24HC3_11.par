@@ -19,7 +19,7 @@ Params|Description
 10  10  10  10  10  10  10  10  10  10  10  10  10  10  10  10  10| pulse time delays (s)
 99| if 99, the initial function exists
 0.909 0.024 0 0 0 0| initial thermal conductivities (k) function
-830.64| pulse power per length (J/m)
+815| pulse power per length (J/m)
 10| initial time shift (s)
 1| time shift increment (s)
 50| heat pulse max step

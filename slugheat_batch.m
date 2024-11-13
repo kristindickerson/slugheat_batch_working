@@ -13,15 +13,18 @@ folderPath = [pwd, '/batch_inputs/' inputfolder_choice];
 % Ask the user for file type
 filetype_choice = input('Are you using .pen or .mat files? (.pen/.mat): ', 's');
 % Ask the user for presence heat pulse or not
-HP_choice = input('Are you using a heat pulse? (y/n): ', 's');
+HP_choice = input('Are you using a heat pulse? (pen/par/none): ', 's');
 
 fileList = dir(fullfile(folderPath, ['*' filetype_choice])); % Use *.* for all files, or '*.ext' for specific file types
-% Check if the input is 'y' or 'n'
-if lower(HP_choice) == 'y'
-    PulseData = 1; % Use heat pulse decay reduction. Set this to 0 if not using it
-else
-    PulseData = 0; % Use heat pulse decay reduction. Set this to 0 if not using it
-end
+
+switch HP_choice
+    case 'pen'
+        PulseData = 1; % Use heat pulse decay reduction from penetation file.
+    case 'par'
+        PulseData = 2; % Use heat pulse decay reduction from parameters file.
+    case 'none'
+        PulseData = 0; % Use no heat pulse.
+end        
 
 
 % Initialize an empty table with 18 variables (columns)
@@ -375,8 +378,11 @@ end
             if PulsePower <= 0
                 PulsePower = PulsePowerPARFile;
                 disp(['You are using the pulse power from the .par file: ' num2str(PulsePower) 'J/m'])
-            else
-                disp(['You are using the pulse power from the penetration file: ' num2str(PulsePower) 'J/m'])
+            elseif PulseData == 2
+                PulsePower = PulsePowerPARFile;
+                disp(['You are using the pulse power from the .par file: ' num2str(PulsePower) 'J/m'])
+            elseif PulseData == 1
+                 disp(['You are using the pulse power from the .pen or .mat file: ' num2str(PulsePower) 'J/m'])
             end
 
 %% Confirm working sensors to use
