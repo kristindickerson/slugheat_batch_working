@@ -12,15 +12,15 @@ inputs:
 
    		write:
 
-				loop par 
-    				or
-				loop pen
+			loop par 
+    			or
+			loop pen
 
 	When prompted in the command window, 
 
 		write:
 
-				Folder_With_My_Files
+			Folder_With_My_Files
 
 	Next, the command window will ask if you are using .mat or .pen files. If you have .mat files, when prompted
 
