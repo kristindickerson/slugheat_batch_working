@@ -1,0 +1,39 @@
+Params|Description
+17| number of sensors (excluding water T)
+1| water temperature thermistor? 1:Y 0:N
+10| time scaling factor (sec/unit)
+0| time between thermistor readings (s)
+0.00476| radius of the sensor (m)
+0.19845| distance between sensors (m)
+0.001| assumed temperature error (K)
+20| length of heat pulse (s)
+0  0  0  0  0  0  0  0  0  0  0  0| quadratic coefficients
+1  1  1  1  1  1  1  1  1  1  1  1| quadratic coefficients
+0  0  0  0  0  0  0  0  0  0  0  0| quadratic coefficients
+5.79 3.67 1.016| kappa=function(k)-coeff.
+200  200  200  200  200  200  200  200  200  200  200  200  200  200  200  200  200| frictional time delays (s)
+50| frictional max step
+-8| time increment (s)
+1.6| frictional min tau value
+10| fricitonal max tau value
+10  10  10  10  10  10  10  10  10  10  10  10  10  10  10  10  10| pulse time delays (s)
+99| if 99, the initial function exists
+0.909 0.024 0 0 0 0| initial thermal conductivities (k) function
+826.43| pulse power per length (J/m)
+10| initial time shift (s)
+1| time shift increment (s)
+50| heat pulse max step
+0.002| k tolerance (W/m°C)
+1.6| pulse min tau value
+10| pulse max tau value
+0.0001| convergence criteria - minimum change of Sigma(k) (W/m°C)
+10| max # of iterations for k
+100| number of iterations for sensitivity analysis
+0.1| standard deviation in k for sensitivity analysis
+0.6| min k cutoff for sensitivity analysis (W/m°C)
+1.5| max k cutoff for sensitivity analysis (W/m°C)
+0.05| mininum layer thickness for sensitivity analysis (m)
+1| k bias in the horizontal direction
+0.25| depth of first thermistor below weight stand (m)
+3.5| probe length (m)
+0.05| manual offset (°C)

@@ -1,0 +1,33 @@
+     11                                                         no of sensors (excluding water T)
+     1                                                          water temperature thermistor? 1:Y 0:N
+     10.                                                        time scaling factor (sec/unit)
+     0.0                                                        time between thermistor readings (s)
+     0.00476                                                    radius of the sensor (m)
+     0.3000                                                     distance between sensors (m)
+     0.001                                                      assumed temperature error (K)
+     20.000                                                     length of heat pulse (s)
+     fat20.tab                      
+     0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.                        quadratic coefficients
+     1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.                          readings to
+     0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.                          millikelvin
+     5.79 3.67 1.016                                            kappa=function(k)-coeff.
+     200. 200. 200. 200. 200. 200. 200. 200. 200. 200. 200.     frictional time delays
+     50 -8.0                                                    frictional max step   time increment
+     1.6  10.                                                   min. and max. tau-values (frictional decay)
+     10. 10. 10. 10. 10. 10. 10. 10. 10. 10. 10.                pulse time delays
+     99 0.909 0.024 0 0 0 0 0 0 0 0                             initial thermal conductivities (k) -- if an initial kInit(z) function exists (the first argument of kInit in the PAR file is then 99 and the next 6 are the coefficients of kInit(z)
+     600.00                                                     pulse power per length (J/m)
+     10. 1.                                                     initial time shift & increment
+     50 0.002                                                   heat pulse max step.   k-tolerance
+     1.6  10.                                                   min. and max. tau-values (pulse decay)
+     0.0001                                                     Minimum change of Sigma(k) %% Added by KD 
+     10                                                         Max # of realizations for k computations %%
+     100                                                        Number of realizations for sensitivity analysis %%
+     0.1                                                        Standard deviation in k for sensitivity analysis %%
+     0.6                                                        Min k cutoff for sensitivity analysis %%
+     1.5                                                        Max k cutoff for sensitivity analysis %%
+     0.05                                                       Mininum layer thickness for sensitivity analysis %%
+     1                                                          Horizontal thermal conductivity Anisotropy %%
+     0.25                                                       Depth of first thermistor below weight stand () %%
+     3.5                                                        length of probe (m) %%
+     0.15                                                       Manual offset: added to all final temperatures relative to bottom %%

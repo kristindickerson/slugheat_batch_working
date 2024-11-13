@@ -1,0 +1,20 @@
+-- Reading in parameters from parameters file
+
+ -- Finding penetration file from SlugPen...
+Penetration file: /Users/kristindickerson/00_local/slugheat_batch/batch_inputs/Glenns_SeptCruise/24HC3/SR2415_24HC3_9.pen
+
+ -- Finding tap file from SlugPen...
+TAP file: /Users/kristindickerson/00_local/slugheat_batch/batch_inputs/Glenns_SeptCruise/24HC3/SR2415_24HC3_9.tap
+
+ -- Finding mat file from SlugPen...
+MAT file: /Users/kristindickerson/00_local/slugheat_batch/batch_inputs/Glenns_SeptCruise/24HC3/SR2415_24HC3_9.mat
+
+ -- Reading in parameters from parameter file...
+-- Reading in penetatration file
+
+-- Splitting penetration and heat pulse data
+
+-- Reading in TAP file
+
+-- Splitting penetration and heat pulse data
+
