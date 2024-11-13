@@ -8,25 +8,26 @@ inputs:
 
 		EX: if your .mat, .tap, .par, and .pen are in 'Folder_With_My_Files'
 
-		When prompted in the command window, 
-		
-		"Please name the input folder where all.pen or .mat files for batch mode are located.
-		This should be a subfolder within "/batch_inputs/":
+  	You can either have a folder with one penetration and many .par files or loop through a folder with one .par file and many penetrations. Ensure your folder set up is 		one of these two options. Then when prompted in the command window, 
+
+   		write:
+
+			loop par 
+    			or
+			loop pen
+
+	When prompted in the command window, 
 
 		write:
 
-				Folder_With_My_Files
+			Folder_With_My_Files
 
 	Next, the command window will ask if you are using .mat or .pen files. If you have .mat files, when prompted
 
 		write:
 
 			.mat
-
-	If you want to use . pen files,  when prompted
-
-		write:
-
+			or
 			.pen
 
 	Next, the command window will ask if you are using a heat pulse and if so, whether to use the power (J/m) defined in the penetration files (.pen and .mat) or parameter 	file (.par). 
@@ -35,16 +36,9 @@ inputs:
 		write:
 
 			pen
-        If you want to use power defined in the parameter file, 
-
-		write:
-
+			or
 			par
-
-	If you are not using a heat pulse, 
-
-		write:
-
+   			or
 			none
 
 outputs:
