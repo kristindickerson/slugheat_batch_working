@@ -47,7 +47,7 @@ if loop_pens
     numCols=18;
     varNames = {'Cruise', 'Station', 'Pen', 'TrialNum', 'Iter', 'HP', 'BW', ...
                     'TotNumSens', 'IgnoredSens', 'SensorsNoTemp', 'SensorsNok', ...
-                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'} % Create variable names as Column1, Column2, etc.
+                    'TiltPen', 'Therm Grad (degC/m)', 'Avk (W/m/degC)', 'HF (W/mdegC)', 'HF Unc(LR) (W/mdegC)','CTRShift (m)', 'Notes'}; % Create variable names as Column1, Column2, etc.
     % Initialize an empty table with the specified variable names
     outputTable = array2table(zeros(0, numCols), 'VariableNames', varNames);
 
@@ -1072,7 +1072,7 @@ MethodChoice = 'Iterate';
             SensorsNok = strjoin(string(Badk));
             TiltPen = num2str(round(mean(Tilt), 1));
             Grad = [num2str(round(Gradient,3))]; 
-            Avk = [num2str(round(Averagek,1))]; 
+            Avk = [num2str(round(Averagek,2))]; 
             HF = [num2str(HeatFlow)]; 
             HFLRUnc = [num2str(round(HFErr,2))];
             CTRShift = [num2str(-HFShift,'%6.2f')]; 
