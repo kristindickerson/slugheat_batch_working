@@ -133,7 +133,7 @@ if loop_pars
     
         % Get the full path to the file
         filePath = fullfile(folderPath, file_pen.name);
-        par_file = fileList(i).name
+        par_file = fileList(i).name;
     
         change_pars=1;
         counter=counter+1;
@@ -1106,6 +1106,7 @@ MethodChoice = 'Iterate';
     
             % Print out new PAR file 
             % ----------------------
+            par_file = ParFileName;
             PrintNewPar(PulsePower, PenFileName, S_ParFile, ...
                 CurrentPath, AppOutputs, isBatchMode, par_file);   
     
