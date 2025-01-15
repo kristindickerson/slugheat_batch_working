@@ -1,0 +1,4 @@
+loop: 'pens' # 'pens': loop through pen files with a single set of parameters OR 'pars': loop through par files with a single penetration
+data_folder: '24HC3' # name of input folder where all .pen or .mat files for batch mode are located. This should be a subfolder within "/batch_inputs/"
+penfile_type: '.mat' # '.mat': using .mat files as input files OR '.pen': using .pen files as input files
+hp_file: 'par' # 'par': heat pulse defined in the .par file OR 'pen': heat pulse defined in the .pen file OR 'none': not using a heat pulse
