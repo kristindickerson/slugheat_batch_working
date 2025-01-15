@@ -8,19 +8,32 @@ To run:
 
    	`loop: 'pens'`
    
-   		Options are 'pens': loop through pen files with a single set of parameters OR 'pars': loop through par files with a single penetration
+   		Options are
+
+   			- 'pens': loop through pen files with a single set of parameters
+   
+   			- 'pars': loop through par files with a single penetration
    
 	`data_folder: 'Folder_With_My_Files'`
 
-		Options are  name of input folder where all .pen or .mat files for batch mode are located. This should be a subfolder within "/batch_inputs/"
+		Name of input folder where all .pen or .mat files for batch mode are located. This should be a subfolder within "/batch_inputs/"
 
 	`penfile_type: '.mat'`
 
-		Options are  '.mat': using .mat files as input files OR '.pen': using .pen files as input files
+		Options are
+
+			- '.mat': using .mat files as input files
+
+   			- '.pen': using .pen files as input files
 
 	`hp_file: 'par'`
 
-		Options are  'par': heat pulse defined in the .par file OR 'pen': heat pulse defined in the .pen file OR 'none': not using a heat pulse`
+		Options are 
+  			- 'par': heat pulse defined in the .par file
+
+   			- 'pen': heat pulse defined in the .pen file
+
+   			- 'none': not using a heat pulse`
 
 3. In matlab command window:
 	
